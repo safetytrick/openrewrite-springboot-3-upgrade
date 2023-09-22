@@ -1,0 +1,15 @@
+initscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2" }
+    }
+    dependencies { classpath("org.openrewrite:plugin:6.3.8") }
+}
+rootProject {
+    plugins.apply(org.openrewrite.gradle.RewritePlugin)
+    dependencies {
+        rewrite("org.openrewrite.recipe:rewrite-spring:5.0.10")
+    }
+    rewrite {
+        activeRecipe("org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_1")
+    }
+}
